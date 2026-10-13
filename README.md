@@ -1,6 +1,12 @@
 # Finlytics
 
+**[Live Demo](https://finlytics-fawn.vercel.app)**
+
 Personal finance dashboard: track income and expenses, set monthly per-category budgets, and visualize cash flow. Sign in with email/password or Google. Every account’s data is isolated in PostgreSQL.
+
+<!-- Add a screenshot after pushing it to the repo, e.g. docs/dashboard.png:
+![Finlytics dashboard](docs/dashboard.png)
+-->
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Prisma 7 · PostgreSQL · Auth.js v5 · Recharts
 
@@ -20,7 +26,7 @@ Money is stored as signed integer cents on the server; the UI uses normal decima
 Requires Node.js 20+ and a PostgreSQL database (Neon, Supabase, Vercel Postgres, or local).
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/BhumikRajput/finlytics.git
 cd finlytics
 npm install
 cp .env.example .env    # PowerShell: Copy-Item .env.example .env
@@ -79,12 +85,18 @@ Provider order (inside the authenticated app shell only): Toast → Transactions
 
 | Variable | Required | Notes |
 | --- | --- | --- |
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
+| `DATABASE_URL` | Yes | PostgreSQL connection string (pooled is fine for the running app) |
+| `DATABASE_URL_UNPOOLED` | No | Direct connection used by Prisma migrations; falls back to `DATABASE_URL` |
 | `AUTH_SECRET` | Yes | `npx auth secret` |
 | `AUTH_GOOGLE_ID` / `AUTH_GOOGLE_SECRET` | No | Enables “Continue with Google” |
 | `AUTH_URL` / `AUTH_TRUST_HOST` | Prod (non-Vercel) | See `.env.example` |
 
-**Google OAuth:** create a Web client at [Google Cloud Console](https://console.cloud.google.com/apis/credentials). Redirect URI: `http://localhost:3000/api/auth/callback/google` (add production URL when deploying). Publish the consent screen or only test users can sign in.
+**Google OAuth:** create a Web client at [Google Cloud Console](https://console.cloud.google.com/apis/credentials). Add these redirect URIs:
+
+- Local: `http://localhost:3000/api/auth/callback/google`
+- Production: `https://<your-domain>/api/auth/callback/google`
+
+Publish the consent screen or only test users can sign in. Use your main domain (not a per-deployment Vercel URL) when signing in, since Google only accepts registered redirect URIs.
 
 ## API (REST)
 
@@ -116,8 +128,10 @@ Prisma client is generated into `src/generated/prisma` (git-ignored; `postinstal
 
 ## Deploying on Vercel
 
-1. Attach a Postgres database; set `DATABASE_URL` and `AUTH_SECRET` for Production (and Preview if needed).
-2. Add Google OAuth vars and production callback URL if using Google.
+The live demo runs on Vercel with a Neon Postgres database.
+
+1. Attach a Postgres database; set `DATABASE_URL`, `DATABASE_URL_UNPOOLED` and `AUTH_SECRET` for Production (and Preview if needed).
+2. Add Google OAuth vars and the production callback URL if using Google.
 3. Connect the repo — `vercel-build` runs migrations then `next build`.
 4. Avoid `npm run seed` in production unless you want the demo account.
 
