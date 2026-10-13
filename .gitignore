@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Production
+build/
+
+# Environment variables
+.env* 
+!.env.example
+
+# Vercel
+.vercel/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Custom / local tooling
+repomix-output.md
+repomix.config.json
+
+# Prisma / SQLite
+src/generated/
+prisma/*.db
+prisma/*.db-journal
+
+# Mine
+.mine/
+justfile
+AGENTS.md
+CLAUDE.md

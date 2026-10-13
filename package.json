@@ -1,0 +1,50 @@
+{
+  "name": "finlytics",
+  "version": "0.1.0",
+  "description": "Personal finance dashboard with transactions, budgets, and charts (Next.js, Prisma, PostgreSQL, Auth.js)",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "personal-finance",
+    "expense-tracker",
+    "prisma",
+    "postgresql",
+    "authjs",
+    "typescript"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "vercel-build": "prisma migrate deploy && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "seed": "tsx prisma/seed.ts --reset"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^18.0.6",
+    "lucide-react": "^1.42.0",
+    "next": "16.3.4",
+    "next-auth": "5.0.0-beta.32",
+    "pg": "^8.23.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20.19.43",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "prisma": "^7.10.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.15",
+    "typescript": "^5"
+  }
+}

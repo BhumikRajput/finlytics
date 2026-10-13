@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f4f7f5;
+  --surface: #ffffff;
+  --ink: #101f19;
+  --ink-muted: #667169;
+  --ink-faint: #94a39b;
+  --line: #e6ebe7;
+  --line-strong: #d6dcd7;
+
+  --primary: #1f9d5a;
+  --primary-dark: #167a46;
+  --primary-soft: #e6f5ec;
+
+  --positive: #1f9d5a;
+  --negative: #d8425a;
+  --negative-soft: #fbe9ec;
+
+  --warning: #e3a63e;
+  --warning-soft: #fdf1de;
+
+  --chart-food: #e8724c;
+  --chart-rent: #1f7a6c;
+  --chart-travel: #16324f;
+  --chart-shopping: #e3a63e;
+  --chart-entertainment: #f0a86c;
+  --chart-bills: #1f9d5a;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  color-scheme: dark;
+  --canvas: #0e1512;
+  --surface: #16201b;
+  --ink: #e8efe9;
+  --ink-muted: #a3b0a8;
+  --ink-faint: #74827a;
+  --line: #25322b;
+  --line-strong: #33433a;
+
+  --primary-dark: #5fd493;
+  --primary-soft: #12301f;
+  --negative-soft: #3a1a21;
+  --warning-soft: #3a2d12;
+
+  --chart-travel: #5b8bc4; /* the original navy disappears on a dark card */
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-negative-soft: var(--negative-soft);
+
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+
+  --color-chart-food: var(--chart-food);
+  --color-chart-rent: var(--chart-rent);
+  --color-chart-travel: var(--chart-travel);
+  --color-chart-shopping: var(--chart-shopping);
+  --color-chart-entertainment: var(--chart-entertainment);
+  --color-chart-bills: var(--chart-bills);
+
+  --font-sans: -apple-system, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Segoe UI Semibold", -apple-system, Inter, Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
